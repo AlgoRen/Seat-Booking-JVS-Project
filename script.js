@@ -33,17 +33,23 @@ function updateSelectedCount() {
 
 // Get data from localStorage and populate UI
 function populateUI() {
+  // * Uses an array of index values stored in localStorage to determine which
+  // * seats need to be made selected by adding the selected class.
   const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
   if (selectedSeats !== null && selectedSeats.length > 0) {
+    // * Going through each seat and checking to see if it is there
+    // * By checking to see if selectedSeats index is greater than -1...
+    // * Meaning that it is and that we will be adding a class of selected.
     seats.forEach((seat, index) => {
       if (selectedSeats.indexOf(index) > -1) {
         seat.classList.add("selected");
       }
     });
   }
-
+  // Get's the selected movie index from localStorage
   const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
 
+  // If there is an index in localstorage then we will update movieSelect
   if (selectedMovieIndex !== null) {
     // The movie is being set to the movie index found in localStorage
     // * The selectIndex method is a built in method on the select element * //
